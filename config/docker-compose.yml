@@ -1,7 +1,8 @@
 version: '2'
 services:
   spring-boot-config-demo:
-    image: ${VERSIONED_IMAGE}
+    build:
+      context: .
     container_name: 'spring-boot-config-demo'
     env_file:
       - demo.env

@@ -26,7 +26,7 @@ code:
 package: code
 	mvn clean package
 
-build: package
+build: package prepare
 	docker build --no-cache -t $(VERSIONED_IMAGE) \
 	--build-arg JAR_FILE=$(JAR_FILE) \
 	.
@@ -35,8 +35,15 @@ test:
 	docker run --rm -p 8080:8080 $(VERSIONED_IMAGE)
 	
 	
-
-start:
+prepare:
+	if [ -f bootstrap.yml ]
+	then
+		echo 'use exists bootstrap.yml'
+	else
+		touch bootstrap.yml
+		echo 'create empty bootstrap.yml'
+		
+start: prepare
 	docker-compose up
 	
 stop:
@@ -44,7 +51,7 @@ stop:
 
 destory: stop
 	docker-compose rm
-test-env-direct-start:
+test-env-direct-start: 
 	docker-compose -f docker-compose-cmd.yml up --force-recreate
 test-env-direct-stop:
 	docker-compose up -f docker-compose-cmd.yml
