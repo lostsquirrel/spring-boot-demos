@@ -3,9 +3,10 @@ SHELL=/bin/bash
 VERSION=1.0-SNAPSHOT
 IMAGETAG=$(VERSION)
 REGISTRY=registry.cn-hangzhou.aliyuncs.com
-IMAGE=$(REGISTRY)/lisong/spring-boot-config-demo
+PROJECT_NAME=spring-boot-configuration-demo
+IMAGE=$(REGISTRY)/lisong/${PROJECT_NAME}
 VERSIONED_IMAGE=$(IMAGE):$(IMAGETAG)
-JAR_FILE=target/config-$(VERSION).jar
+JAR_FILE=target/${PROJECT_NAME}-$(VERSION).jar
 export VERSIONED_IMAGE
 export JAR_FILE
 # 登陆registry
