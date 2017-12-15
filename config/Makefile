@@ -29,7 +29,7 @@ build: package
 	.
 
 test:
-	docker run --rm  $(VERSIONED_IMAGE)
+	docker run --rm -p 8080:8080 $(VERSIONED_IMAGE)
 	
 	
 
