@@ -26,7 +26,7 @@ code:
 package: code
 	mvn clean package
 
-build: package prepare
+build: package 
 	docker build --no-cache -t $(VERSIONED_IMAGE) \
 	--build-arg JAR_FILE=$(JAR_FILE) \
 	.
@@ -35,15 +35,8 @@ test:
 	docker run --rm -p 8080:8080 $(VERSIONED_IMAGE)
 	
 	
-prepare:
-	if [ -f application.yml ]
-	then
-		echo 'use exists application.yml'
-	else
-		touch application.yml
-		echo 'create empty application.yml'
-		
-start: prepare
+
+start: 
 	docker-compose up
 	
 stop:
