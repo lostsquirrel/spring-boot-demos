@@ -36,12 +36,12 @@ test:
 	
 	
 prepare:
-	if [ -f bootstrap.yml ]
+	if [ -f application.yml ]
 	then
-		echo 'use exists bootstrap.yml'
+		echo 'use exists application.yml'
 	else
-		touch bootstrap.yml
-		echo 'create empty bootstrap.yml'
+		touch application.yml
+		echo 'create empty application.yml'
 		
 start: prepare
 	docker-compose up
