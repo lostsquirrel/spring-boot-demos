@@ -3,7 +3,7 @@ services:
   spring-boot-config-demo:
     image: ${VERSIONED_IMAGE}
     container_name: 'spring-boot-config-demo'
-    command: SPRING_APPLICATION_JSON='{"foo":{"bar":"spam"}}' java -jar /app.jar
+    command: SPRING_APPLICATION_JSON='{"foo":{"bar":"spam"}}' java -jar /app.jar --debug
     ports:
      - "8080:8080"
     extra_hosts:
