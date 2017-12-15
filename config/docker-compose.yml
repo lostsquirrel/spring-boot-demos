@@ -1,6 +1,6 @@
 version: '2'
 services:
-  eureka-server:
+  spring-boot-config-demo:
     image: ${VERSIONED_IMAGE}
     container_name: 'spring-boot-config-demo'
     env_file:
