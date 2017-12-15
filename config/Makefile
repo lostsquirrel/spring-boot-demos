@@ -37,9 +37,16 @@ test:
 	
 
 start:
+	docker-compose up
 	
-	
-test-env-direct:
+stop:
+	docker-compose down
+
+destory: stop
+	docker-compose rm
+test-env-direct-start:
+	docker-compose up -f docker-compose-cmd.yml
+test-env-direct-stop:
 	docker-compose up -f docker-compose-cmd.yml
 # 删除构建失败的镜像
 clean:
