@@ -1,38 +1,47 @@
-package hello;
+package demo.spring.boot.hello.controller;
 
+import demo.spring.boot.hello.config.FooProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.core.env.AbstractEnvironment;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.MapPropertySource;
 import org.springframework.core.env.PropertySource;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 
+@RestController
+public class DemoController {
+    private static final Logger log = LoggerFactory.getLogger(DemoController.class);
 
-@Controller
-@EnableAutoConfiguration
-public class SampleController {
-
-    private static final Logger log = LoggerFactory.getLogger(SampleController.class);
+    @Autowired
+    final FooProperties fooProperties;
 
     @Autowired
     Environment env;
+
+    public DemoController(FooProperties fooProperties) {
+        this.fooProperties = fooProperties;
+    }
 
     @RequestMapping("/")
     @ResponseBody
     String home() {
         return "Hello World!";
+    }
+
+    @RequestMapping("/foo")
+    @ResponseBody
+    FooProperties foo() {
+        return fooProperties;
     }
 
     @GetMapping("/sys")
@@ -57,8 +66,4 @@ public class SampleController {
         return map;
     }
 
-
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(SampleController.class, args);
-    }
 }
