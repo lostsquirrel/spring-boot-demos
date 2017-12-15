@@ -37,7 +37,10 @@ test:
 	
 
 start:
-	docker-compose up
+	
+	
+test-env-direct:
+	docker-compose up -f docker-compose-cmd.yml
 # 删除构建失败的镜像
 clean:
 	docker rmi -f $(docker images | grep "<none>" | awk '{print $3}')
