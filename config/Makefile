@@ -45,7 +45,7 @@ stop:
 destory: stop
 	docker-compose rm
 test-env-direct-start:
-	docker-compose up -f docker-compose-cmd.yml 
+	docker-compose -f docker-compose-cmd.yml up --force-recreate
 test-env-direct-stop:
 	docker-compose up -f docker-compose-cmd.yml
 # 删除构建失败的镜像
