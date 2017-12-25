@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: rabbit-demo
+  rabbitmq:
+    host: ${RABBIT_HOST:localhost}
+my.queue.name: spring-boot
+my.exchange.name: spring-boot-exchange
