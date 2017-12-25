@@ -1,6 +1,5 @@
-package demo.spring.boot.hello.controller;
+package demo.spring.boot.config.controller;
 
-import demo.spring.boot.hello.config.FooProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +21,15 @@ import java.util.Properties;
 public class DemoController {
     private static final Logger log = LoggerFactory.getLogger(DemoController.class);
 
-    @Autowired
-    final FooProperties fooProperties;
+//    @Autowired
+//    final FooProperties fooProperties;
 
     @Autowired
     Environment env;
 
-    public DemoController(FooProperties fooProperties) {
-        this.fooProperties = fooProperties;
-    }
+//    public DemoController(FooProperties fooProperties) {
+//        this.fooProperties = fooProperties;
+//    }
 
     @RequestMapping("/")
     @ResponseBody
@@ -38,11 +37,11 @@ public class DemoController {
         return "Hello World!";
     }
 
-    @RequestMapping("/foo")
-    @ResponseBody
-    FooProperties foo() {
-        return fooProperties;
-    }
+//    @RequestMapping("/foo")
+//    @ResponseBody
+//    FooProperties foo() {
+//        return fooProperties;
+//    }
 
     @GetMapping("/sys")
     @ResponseBody
@@ -54,13 +53,19 @@ public class DemoController {
     @ResponseBody
     Map<String, Object> env() {
         Map<String, Object> map = new HashMap();
-        for(Iterator it = ((AbstractEnvironment) env).getPropertySources().iterator(); it.hasNext(); ) {
+        for (Iterator it = ((AbstractEnvironment) env).getPropertySources().iterator(); it.hasNext(); ) {
             PropertySource propertySource = (PropertySource) it.next();
+            log.debug("{}: {}", propertySource.getName(), propertySource.getSource());
+
             if (propertySource instanceof MapPropertySource) {
-                map.putAll(((MapPropertySource) propertySource).getSource());
-                log.debug("Map PropertySource: %s", propertySource);
+                if (!"systemProperties".equals(propertySource.getName())) {
+                    map.put(propertySource.getName(), propertySource.getSource());
+                }
+
+//                map.putAll(((MapPropertySource) propertySource).getSource());
+//                log.debug("Map PropertySource: {}", propertySource);
             } else {
-                log.debug("None Map PropertySource: %s", propertySource);
+//                log.debug("None Map PropertySource: {}", propertySource);
             }
         }
         return map;

@@ -1,0 +1,3 @@
+foo:
+  bar: spam
+logging.level.demo.spring.boot.config: debug
