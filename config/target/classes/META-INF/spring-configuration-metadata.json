@@ -1,0 +1,17 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "demo.spring.boot.hello.config.FooProperties",
+      "name": "foo",
+      "type": "demo.spring.boot.hello.config.FooProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "demo.spring.boot.hello.config.FooProperties",
+      "name": "foo.bar",
+      "type": "java.lang.String"
+    }
+  ]
+}
