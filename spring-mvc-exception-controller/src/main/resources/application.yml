@@ -1,0 +1,3 @@
+logging.level.demo.spring.mvc.exception: DEBUG
+#logging.level.demo.spring.mvc.exception.service.impl: DEBUG
+#debug: true
