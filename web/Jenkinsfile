@@ -1,0 +1,10 @@
+pipeline {
+    agent { docker { image 'registry.lisong.pub:5000/sunrise/maven:3.5.3-server-jre-8' } }
+    stages {
+        stage('build') {
+            steps {
+                sh 'mvn --version'
+            }
+        }
+    }
+}
