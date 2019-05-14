@@ -1,2 +1,2 @@
-# spring_boot_v1_demo
+# Spring Boot demos
 try to use spring boot
